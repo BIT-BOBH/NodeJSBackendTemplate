@@ -3,6 +3,7 @@ const express = require("express");
 const Logger = require("./Logger");
 const crypto = require("crypto");
 const http = require("http");
+const cookieParser = require('cookie-parser')
 
 // init express config
 const expressPort = process.env.BACKENDPORT || 3000;
@@ -19,10 +20,18 @@ Logger.LogInfo("JwtToken: " + JwtToken);
 
 // init express app
 const app = express();
+app.use(cookieParser());
 app.use(require("./middleware/SecurityHeader"));
 app.use(require("./middleware/Logger"));
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(express.json());
+
+// set routers
+app.use("/api/test", require("./routers/TestRouter"));
+
+// set default routers
+app.use(require("./routers/404Router"));
+app.use(require("./routers/ErrorRouter"));
 
 const server = http.createServer(app).listen(expressPort,()=>{
     if(process.env.LOCALDEV){
