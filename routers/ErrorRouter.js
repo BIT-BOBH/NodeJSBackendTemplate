@@ -2,11 +2,12 @@ const Logger = require("../utils/Logger");
 const CodeErrorRouter = (err, req, res, next) => {
     Logger.LogError(`Request ${req.method} ${req.originalUrl} caused error: ${err.message}`);
     Logger.LogError(`Stacktrace: ${err.stack}`);
-    res.status(500).send(JSON.stringify({
-        "code": 500,
-        "message": "internal code error."
-    }));
-    next(err);
+    const code = err.status || 500;
+    const reason = err.message || "Unknown error";
+    return res.status(code).json({
+        "code": code,
+        "message": `internal code error.(${reason})`
+    });
 }
 
 module.exports = CodeErrorRouter;
