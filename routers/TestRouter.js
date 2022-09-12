@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const { addUser } = require("../controllers/AddUser");
+
 router.get("/:id/show", function(req, res){
     res.cookie("hello", "value", {
         httpOnly: true,
@@ -21,5 +23,7 @@ router.get("/:id/can", function(req, res){
     });
     res.send(`can can need! ${req.params.id}`);
 });
+
+router.get("/add", addUser)
 
 module.exports = router;
