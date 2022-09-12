@@ -1,4 +1,4 @@
-const Logger = require("../Logger");
+const Logger = require("../utils/Logger");
 const NotFoundRouter = (req, res, next) => {
     Logger.LogWarn(`Request ${req.method} ${req.originalUrl} not found!`);
     res.status(404).send(JSON.stringify({

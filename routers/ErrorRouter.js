@@ -1,4 +1,4 @@
-const Logger = require("../Logger");
+const Logger = require("../utils/Logger");
 const CodeErrorRouter = (err, req, res, next) => {
     Logger.LogError(`Request ${req.method} ${req.originalUrl} caused error: ${err.message}`);
     Logger.LogError(`Stacktrace: ${err.stack}`);

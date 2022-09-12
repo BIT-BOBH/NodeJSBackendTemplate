@@ -1,6 +1,6 @@
 require("dotenv").config();   //config .env file
 const express = require("express");
-const Logger = require("./Logger");
+const Logger = require("./utils/Logger");
 const crypto = require("crypto");
 const http = require("http");
 const cookieParser = require('cookie-parser')
