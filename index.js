@@ -26,8 +26,11 @@ app.use(require("./middleware/Logger"));
 app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(express.json());
 
-// set routers
+// set controller routers
 app.use("/api/test", require("./routers/TestRouter"));
+
+// set static routers
+app.use(express.static(__dirname + '/static'));
 
 // set default routers
 app.use(require("./routers/404Router"));
