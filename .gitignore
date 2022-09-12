@@ -58,3 +58,6 @@ typings/
 # MacosFile
 
 .DS_Store
+
+# dotenv file
+.env
