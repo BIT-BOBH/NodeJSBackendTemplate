@@ -24,6 +24,7 @@ Date.prototype.format = function(fmt) {
 }
 
 const LogFileName = new Date().format("yyyy-MM-dd") + ".txt";
+const LogErrFileName = new Date().format("yyyy-MM-dd") + "_err.txt";
 
 if(!fs.existsSync("logs")){
     fs.mkdirSync("logs");
@@ -32,6 +33,7 @@ if(!fs.existsSync("logs")){
 function LogError(str){
     console.log(chalk.redBright("[" + new Date().format("yyyy-MM-dd hh:mm:ss") + "][Error] ") + str);
     fs.appendFileSync(path.join(__dirname,"../logs/" + LogFileName), "[" + new Date().format("yyyy-MM-dd hh:mm:ss") + "][Error] " + str + "\n");
+    fs.appendFileSync(path.join(__dirname,"../logs/" + LogErrFileName), "[" + new Date().format("yyyy-MM-dd hh:mm:ss") + "][Error] " + str + "\n");
 }
 
 function LogInfo(str){
