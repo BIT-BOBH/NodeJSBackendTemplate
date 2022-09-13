@@ -5,8 +5,8 @@ const CodeErrorRouter = (err, req, res, next) => {
     const code = err.status || 500;
     const reason = err.message || "Unknown error";
     return res.status(code).json({
-        "code": code,
-        "message": `internal code error.(${reason})`
+        code,
+        message: `internal code error.(${reason})`
     });
 }
 

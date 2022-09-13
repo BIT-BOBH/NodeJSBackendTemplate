@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 
 const addUser = async(req,res,next) => {
     try{
-        console.log(req.query);
         let { email, password, username } = req.query;
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
@@ -13,7 +12,10 @@ const addUser = async(req,res,next) => {
             password: hash
         });
         await newUser.save();
-        res.send("user created!");
+        res.status(200).json({
+            code: 200,
+            message: "user create successfully",
+        });
     }catch(err){
         next(err);
     }
