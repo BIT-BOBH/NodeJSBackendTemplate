@@ -10,12 +10,14 @@ const AddSecurityHeader = (req, res, next) => {
     });
     if(!process.env.LOCALDEV){
         res.set({
-            "Access-Control-Allow-Origin": `https://${process.env.DOMAIN}:${process.env.FRONTPORT}`,
+            "Access-Control-Allow-Origin": process.env.FRONTDOMAIN,
             "Access-Control-Allow-Methods": "GET, POST"
         });
     }else{
         res.set({
-            "DEVMODE": "true"
+            "DEVMODE": "true",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST"
         });
     }
     next();
