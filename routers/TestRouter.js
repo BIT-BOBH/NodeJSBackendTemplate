@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { addUser } = require("../controllers/AddUser");
 
-router.get("/:id/show", function(req, res){
+router.get("/:id/show", require("../middleware/AntiTimingAtk"), function(req, res){
     res.cookie("hello", "value", {
         httpOnly: true,
     });
